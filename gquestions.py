@@ -37,6 +37,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException
+from webdriver_manager.chrome import ChromeDriverManager
 
 ''' 
 Visualizza una barra di caricamento per mostrare l'attesa
@@ -66,7 +67,10 @@ def initBrowser(headless=False):
     chrome_options.add_argument("--disable-features=NetworkService")
     if headless:
         chrome_options.add_argument('headless')
-    return webdriver.Chrome(options=chrome_options,executable_path=chrome_path)
+    return webdriver.Chrome(ChromeDriverManager().install())
+        # options=chrome_options,
+        # executable_path=chrome_path
+        # )
 """
 Search on Google and returns the list of PAA questions in SERP.
 """
